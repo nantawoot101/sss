@@ -1,0 +1,71 @@
+<div class="container mx-auto p-4">
+	<div class="bg-white border-green-500 border-2 text-black p-4 rounded-lg shadow-lg">
+	  <div class="mb-4">
+		<h6 class="text-2xl font-semibold">ลงทะเบียนผู้ใช้</h6>
+	  </div>
+	  <form [formGroup]="register" (ngSubmit)="onSubmit()">
+		<div class="grid grid-cols-2 gap-4">
+		  <div>
+			<label for="firstName">ชื่อจริง</label>
+			<input type="text" id="firstName" formControlName="firstName" class="form-control">
+			<div *ngIf="register.get('firstName')?.invalid && (register.get('firstName')?.dirty || register.get('firstName')?.touched)" class="text-red-500 mt-1">กรุณากรอกชื่อจริง</div>
+		  </div>
+		  <div>
+			<label for="lastName">นามสกุล</label>
+			<input type="text" id="lastName" formControlName="lastName" class="form-control">
+			<div *ngIf="register.get('lastName')?.invalid && (register.get('lastName')?.dirty || register.get('lastName')?.touched)" class="text-red-500 mt-1">กรุณากรอกนามสกุล</div>
+		  </div>
+		  <div>
+			<label for="phone">เบอร์โทรศัพท์</label>
+			<input type="text" id="phone" formControlName="phone" class="form-control">
+			<div *ngIf="register.get('phone')?.invalid && (register.get('phone')?.dirty || register.get('phone')?.touched)" class="text-red-500 mt-1">กรุณากรอกเบอร์โทรศัพท์</div>
+		  </div>
+		  <div>
+			<label for="age">อายุ</label>
+			<input type="text" id="age" formControlName="age" class="form-control">
+			<div *ngIf="register.get('age')?.invalid && (register.get('age')?.dirty || register.get('age')?.touched)" class="text-red-500 mt-1">กรุณากรอกอายุ</div>
+		  </div>
+		  <div>
+			<label for="email">อีเมล</label>
+			<input type="text" id="email" formControlName="email" class="form-control">
+			<div *ngIf="register.get('email')?.invalid && (register.get('email')?.dirty || register.get('email')?.touched)" class="text-red-500 mt-1">กรุณากรอกอีเมล</div>
+		  </div>
+		  <div>
+			<label for="userName">ชื่อผู้ใช้</label>
+			<input type="text" id="userName" formControlName="userName" class="form-control">
+			<div *ngIf="register.get('userName')?.invalid && (register.get('userName')?.dirty || register.get('userName')?.touched)" class="text-red-500 mt-1">กรุณากรอกชื่อผู้ใช้</div>
+		  </div>
+		  <div>
+			<label for="password">รหัสผ่าน</label>
+			<div class="relative">
+			  <input type="password" id="password" formControlName="password" class="form-control">
+			  <button type="button" class="absolute inset-y-0 right-0 px-4 py-2" (click)="showPassword = !showPassword">
+				<i *ngIf="showPassword" class="fas fa-eye"></i>
+				<i *ngIf="!showPassword" class="fas fa-eye-slash"></i>
+			  </button>
+			</div>
+			<div *ngIf="register.get('password')?.invalid && (register.get('password')?.dirty || register.get('password')?.touched)" class="text-red-500 mt-1">กรุณากรอกรหัสผ่าน</div>
+		  </div>
+		  <div>
+			<label for="confirmPassword">ยืนยันรหัสผ่าน</label>
+			<div class="relative">
+			<input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control">
+			<button type="button" class="absolute inset-y-0 right-0 px-4 py-2" (click)="showPassword = !showPassword">
+				<i *ngIf="showPassword" class="fas fa-eye"></i>
+				<i *ngIf="!showPassword" class="fas fa-eye-slash"></i>
+			  </button>
+			</div>
+			<div *ngIf="register.get('confirmPassword')?.invalid && (register.get('confirmPassword')?.dirty || register.get('confirmPassword')?.touched)" class="text-red-500 mt-1">กรุณายืนยันรหัสผ่าน</div>
+			<div *ngIf="isPassword" class="text-red-500 mt-1">รหัสผ่านไม่ตรงกัน</div>
+		  </div>
+		  <div>
+			<label for="profileImage">รูปโปรไฟล์</label>
+			<input type="file" (change)="onFileSelected($event)" name="file" class="form-control">
+			<img *ngIf="selectedFileImg.length > 0" [src]="selectedFileImg[0].url" alt="Selected Image" class="mt-10" style="max-width: 100%; height: auto;">
+		  </div>
+		</div>
+		<button type="submit" class="btn bg-green-600 text-white hover:bg-green-700 focus:bg-green-700 focus:outline-none mt-4">สมัครสมาชิก</button>
+	  </form>
+	</div>
+  </div>
+  

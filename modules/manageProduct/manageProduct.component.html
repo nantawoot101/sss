@@ -1,0 +1,88 @@
+<div class="container mx-auto">
+  <div class="py-8">
+    <div class="overflow-x-auto bg-white rounded-lg shadow overflow-y-auto relative">
+      <div class="px-6 py-4 flex justify-between items-center">
+        <h3 class="text-lg font-semibold text-gray-700">จัดการสินค้า</h3>
+        <a href="/product" class="bg-green-500 text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-green-600 transition-colors duration-300">เพิ่มสินค้า</a>
+      </div>
+      <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative">
+        <thead>
+          <tr class="text-left">
+            <th class="py-2 px-3 sticky top-0 border-b border-gray-200 bg-gray-100">
+              <span class="text-gray-600 font-medium">รูปสินค้า</span>
+            </th>
+            <th class="py-2 px-3 sticky top-0 border-b border-gray-200 bg-gray-100">
+              <span class="text-gray-600 font-medium">รายละเอียดสินค้า</span>
+            </th>
+            <th class="py-2 px-3 sticky top-0 border-b border-gray-200 bg-gray-100">
+              <span class="text-gray-600 font-medium">ประเภทสินค้า</span>
+            </th>
+            <th class="py-2 px-3 sticky top-0 border-b border-gray-200 bg-gray-100 text-center">
+              <span class="text-gray-600 font-medium">ชื่อผู้เขียน</span>
+            </th>
+            <th class="py-2 px-3 sticky top-0 border-b border-gray-200 bg-gray-100 text-center">
+              <span class="text-gray-600 font-medium">สำนักพิมพ์</span>
+            </th>
+            <th class="py-2 px-3 sticky top-0 border-b border-gray-200 bg-gray-100 text-center">
+              <span class="text-gray-600 font-medium">ราคา</span>
+            </th>
+            <th class="py-2 px-3 sticky top-0 border-b border-gray-200 bg-gray-100 text-center">
+              <span class="text-gray-600 font-medium">จำนวน</span>
+            </th>
+            <th class="py-2 px-3 sticky top-0 border-b border-gray-200 bg-gray-100 text-center">
+              <span class="text-gray-600 font-medium">แก้ไขข้อมูล</span>
+            </th>
+            <th class="py-2 px-3 sticky top-0 border-b border-gray-200 bg-gray-100 text-center">
+              <span class="text-gray-600 font-medium">ลบ</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of productList" class="border-b border-gray-200 hover:bg-gray-300 transition-colors duration-300">
+            <td class="py-3 px-6 text-left">
+              <div class="flex items-center">
+                <div class="flex flex-wrap">
+                  <img *ngFor="let productImg of product.imgList" [src]="productImg" class="w-10 h-10 transition-opacity duration-300 hover:opacity-75 my-1 mr-2" alt="product-image">
+                </div>
+              </div>
+            </td>
+            <td class="py-3 px-6 text-left">
+              <div class="flex flex-col">
+                <h6 class="text-sm font-semibold transition-opacity duration-300 hover:opacity-75">{{ product.productName }}</h6>
+                <p class="text-xs text-gray-500 transition-opacity duration-300 hover:opacity-75">{{ product.productDesc }}</p>
+              </div>
+            </td>
+            <td class="py-3 px-6 text-left">
+              <div class="text-xs">
+                <td class="py-3 px-6 text-left">
+                  <div class="text-xs">
+                    <p class="font-semibold mb-1 transition-opacity duration-300 hover:opacity-75">{{ product.productType.length > 0 ? product.productType[0].productTypeName : '' }}</p>
+                    <p class="text-xs text-gray-500 transition-opacity duration-300 hover:opacity-75">{{ product.productType.length > 0 ? product.productType[0].productTypeDesc : '' }}</p>
+                  </div>
+                </td>                
+              </div>
+            </td>
+            <td class="py-3 px-6 text-center">
+              <span class="text-xs text-gray-500 font-semibold transition-opacity duration-300 hover:opacity-75">{{ product.author }}</span>
+            </td>
+            <td class="py-3 px-6 text-center">
+              <span class="text-xs text-gray-500 font-semibold transition-opacity duration-300 hover:opacity-75">{{ product.pubLisher }}</span>
+            </td>
+            <td class="py-3 px-6 text-center">
+              <span class="text-xs text-gray-500 font-semibold transition-opacity duration-300 hover:opacity-75">฿{{ product.price }}</span>
+            </td>
+            <td class="py-3 px-6 text-center">
+              <span class="text-xs text-gray-500 font-semibold transition-opacity duration-300 hover:opacity-75">{{ product.quantity }}</span>
+            </td>
+            <td class="py-3 px-6 text-center">
+              <button class="bg-yellow-400 text-white py-1 px-3 rounded-lg text-xs font-semibold hover:bg-yellow-500 transition-colors duration-300 mr-1" (click)="onUpdateProduct(product.productId)">แก้ไข</button>
+            </td>
+            <td class="py-3 px-6 text-center">
+            <button class="bg-red-400 text-white py-1 px-3 rounded-lg text-xs font-semibold hover:bg-red-500 transition-colors duration-300" (click)="onDeleteProduct(product.productId)">ลบ</button>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="container mx-auto p-4">
+  <div class="bg-gray-800 text-white p-4 rounded-lg shadow-lg">
+    <div class="mb-4">
+      <h6 class="text-2xl font-semibold">ข้อมูลผู้ใช้</h6>
+      <div class="input-group mt-4">
+        <input type="text" class="form-control" placeholder="ค้นหาสินค้า" [(ngModel)]="searchTerm" (ngModelChange)="onSearch()">
+        <button class="btn btn-outline-light" type="button" (click)="onSearch()">ค้นหา</button>
+      </div>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-gray-900 text-white rounded-lg">
+        <thead class="bg-gray-700 text-gray-300">
+          <tr>
+            <th class="px-4 py-2 text-left">userId</th>
+            <th class="px-4 py-2 text-left">รูปโปรไฟล์</th>
+            <th class="px-4 py-2 text-left">ชื่อผู้ใช้</th>
+            <th class="px-4 py-2 text-left">ชื่อจริง</th>
+            <th class="px-4 py-2 text-center">นามสกุล</th>
+            <th class="px-4 py-2 text-center">สถานะ</th>
+            <th class="px-4 py-2 text-center">เบอร์โทรศัพท์</th>
+            <th class="px-4 py-2 text-center">อายุ</th>
+            <th class="px-4 py-2 text-center">อีเมล</th>
+            <th class="px-4 py-2 text-center">วันที่สร้าง</th>
+            <th class="px-4 py-2 text-center">แก้ไขล่าสุด</th>
+            <th class="px-4 py-2 text-center">แก้ไขข้อมูล</th>
+            <th class="px-4 py-2 text-center">ลบข้อมูล</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredUserList; let i = index" class="bg-gray-800 border-b border-gray-700 hover:bg-gray-700">
+            <td class="px-2 py-2 text-center">{{item.userId}}</td>
+            <td class="px-2 py-2">
+              <img [src]="imgBaseUrl + item.userImgName" alt="Profile" class="w-12 h-12 rounded-full object-cover">
+            </td>
+            <td class="px-2 py-2 text-center">{{item.userName}}</td>
+            <td class="px-2 py-2 text-center">{{item.firstName}}</td>
+            <td class="px-2 py-2 text-center">{{item.lastName}}</td>
+            <td class="px-2 py-2 text-center">
+              <span *ngIf="item.status == '1'" class="text-green-400">ปกติ</span>
+              <span *ngIf="item.status != '1'" class="text-red-400">ผิดปกติ</span>
+            </td>
+            <td class="px-2 py-2 text-center">{{item.phone}}</td>
+            <td class="px-2 py-2 text-center">{{item.age}}</td>
+            <td class="px-2 py-2 text-center">{{item.email}}</td>
+            <td class="px-2 py-2 text-center">{{ formatDate(item.createDate) }}</td>
+            <td class="px-2 py-2 text-center">{{ formatDate(item.updateDate) }}</td>
+            <td class="align-middle text-center">
+              <button class="btn btn-warning mr-2" (click)="onUpdateUser(item.userId)">แก้ไข</button>   
+            </td>
+            <td class="align-middle text-center">
+              <button class="btn btn-danger mr-3" (click)="onDeleteUser(item.userId)">ลบ</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

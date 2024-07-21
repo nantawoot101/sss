@@ -1,0 +1,24 @@
+<!-- address.component.html -->
+
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-4">ที่อยู่ของฉัน</h1>
+  <button (click)="onNewAddress()" class="bg-blue-500 text-white py-2 px-4 rounded mb-4">เพิ่มที่อยู่ใหม่</button>
+
+  <div *ngIf="userAddresses.length > 0; else noAddress">
+    <div *ngFor="let address of userAddresses" class="bg-white p-4 rounded shadow mb-4">
+      <p><strong>ที่อยู่:</strong> {{ address.address }}</p>
+      <p><strong>ตำบล:</strong> {{ address.district }}</p>
+      <p><strong>เขต/อำเภอ:</strong> {{ address.prefecture }}</p>
+      <p><strong>จังหวัด:</strong> {{ address.province }}</p>
+      <p><strong>รหัสไปรษณีย์:</strong> {{ address.zipCode }}</p>
+      <p><strong>ชื่อ-นามสกุล:</strong> {{ address.recipientFname }} {{ address.recipientLname }}</p>
+      <p><strong>เบอร์โทรศัพท์ผู้รับ:</strong> {{ address.recipientPhone }}</p>
+      <button class="bg-yellow-500 text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-yellow-600 transition-colors duration-300 mr-3 mt-3" (click)="onUpdateAddress()">แก้ไขข้อมูลที่อยู่</button>
+      <button class="bg-red-500 text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-red-600 transition-colors duration-300" (click)="onDeleteAddress(address.userId)">ลบที่อยู่</button>
+    </div>
+  </div>
+
+  <ng-template #noAddress>
+    <p class="text-gray-600">ยังไม่มีข้อมูลที่อยู่.</p>
+  </ng-template>
+</div>

@@ -1,0 +1,71 @@
+<div class="container mx-auto p-4">
+  <div class="max-w-3xl mx-auto">
+    <div class="bg-white shadow-md rounded-lg p-6">
+      <div class="mb-4">
+        <h4 class="text-xl font-bold text-gray-700">{{ title }}</h4>
+        <hr class="mt-2">
+      </div>
+      <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+          <label for="username" class="block text-sm font-medium text-gray-700">ชื่อผู้ใช้*</label>
+          <input formControlName="userName" placeholder="Username" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300" required="required" type="text" readonly>
+        </div>
+        <div class="mb-4">
+          <label for="name" class="block text-sm font-medium text-gray-700">ชื่อจริง</label>
+          <input formControlName="firstName" placeholder="ชื่อจริง" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300" type="text">
+        </div>
+        <div class="mb-4">
+          <label for="lastname" class="block text-sm font-medium text-gray-700">นามสกุล</label>
+          <input formControlName="lastName" placeholder="นามสกุล" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300" type="text">
+        </div>
+        <div class="mb-4">
+          <label for="text" class="block text-sm font-medium text-gray-700">เบอร์โทรศัพท์</label>
+          <input formControlName="phone" placeholder="เบอร์โทรศัพท์" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300" required="required" type="text">
+        </div>
+        <div class="mb-4">
+          <label for="age" class="block text-sm font-medium text-gray-700">อายุ</label>
+          <input formControlName="age" placeholder="อายุ" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300" required="required" type="text">
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input formControlName="email" placeholder="Email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300" required="required" type="text">
+        </div>
+        <div class="password">
+          <label for="password" class="block text-sm font-medium text-gray-700">รหัสผ่าน</label>
+          <div class="relative">
+            <input formControlName="password"
+                   placeholder="รหัสผ่าน"
+                   class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300"
+                   required
+                   type="{{ showPassword ? 'text' : 'password' }}">
+            <button type="button" class="absolute inset-y-0 right-0 px-4 py-2" (click)="showPassword = !showPassword">
+              <i *ngIf="showPassword" class="fas fa-eye text-gray-500"></i>
+              <i *ngIf="!showPassword" class="fas fa-eye-slash text-gray-500"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="profilePicture">แก้ไขรูปภาพโปรไฟล์</label>
+          <input type="file" class="form-control" id="file" (change)="onFileSelected($event)">
+          <div class="mt-2 relative flex justify-start items-start">
+            <div class="relative w-7/12">
+              <img *ngIf="userDetail?.userImgPath" [src]="userDetail?.userImgPath" class="w-full" alt="Profile">
+              <button *ngIf="userDetail?.userImgPath"
+                      type="button"
+                      class="absolute top-0 right-0 text-red-500 p-1 cursor-pointer"
+                      (click)="removeProfile()">
+                <i class="material-icons">clear</i>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="text-right">
+          <button type="submit" class="px-4 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75">บันทึกข้อมูล</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

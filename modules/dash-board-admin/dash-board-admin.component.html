@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">รายได้ย้อนหลัง</h5>
+            <canvas id="revenueChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">ข้อมูลผู้ใช้</h5>
+            <p>จำนวนผู้ใช้ทั้งหมด: <span id="totalUsers">0</span></p>
+            <p>จำนวนผู้ดูแลระบบ: <span id="totalAdmins">0</span></p>
+          </div>
+        </div>
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">ข้อมูลการสั่งซื้อ</h5>
+            <p>จำนวนคำสั่งซื้อทั้งหมด: <span id="totalOrders">0</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mock data
+    const revenueData = {
+      labels: ["วันที่ 1", "วันที่ 2", "วันที่ 3", "วันที่ 4", "วันที่ 5", "วันที่ 6", "วันที่ 7"],
+      datasets: [{
+        label: "รายได้ (บาท)",
+        data: [1000, 1500, 2000, 1800, 2500, 2100, 3000],
+        fill: false,
+        borderColor: "rgb(75, 192, 192)",
+        tension: 0.1
+      }]
+    };
+
+    const totalUsers = 150;
+    const totalAdmins = 5;
+    const totalOrders = 80;
+
+    // Update total users, admins, and orders
+    document.getElementById('totalUsers').textContent = totalUsers;
+    document.getElementById('totalAdmins').textContent = totalAdmins;
+    document.getElementById('totalOrders').textContent = totalOrders;
+
+    // Create revenue chart
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'line',
+      data: revenueData,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

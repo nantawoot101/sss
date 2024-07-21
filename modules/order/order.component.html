@@ -1,0 +1,73 @@
+<div class="container mx-auto px-4 py-8 bg-white shadow-lg rounded-lg">
+  <h1 class="text-3xl font-bold text-green-600 mb-8">สรุปคำสั่งซื้อ</h1>
+  
+  <div *ngIf="cartItems.length > 0">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div *ngFor="let item of cartItems" class="border rounded-lg p-4 shadow-md">
+        <img [src]="item.productImage" alt="Product Image" class="img-fluid" class = "">
+        <h3 class="text-lg font-semibold text-green-600">{{ item.productName }}</h3>
+        <p class="font-bold">฿{{ item.price}}</p>
+        <p>จำนวน: {{ item.cartQuantity }}</p>
+        <p>รวม: ฿{{ item.price * item.cartQuantity}}</p>
+        <div class="mt-4">
+          <p>ยอดรวมทั้งหมด: ฿{{ getTotalAmount() }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <h2 class="text-xl font-semibold mb-4 text-green-600">เลือกที่อยู่จัดส่ง</h2>
+    <select class="border p-2 w-full rounded-lg" [(ngModel)]="selectedAddress">
+      <option *ngFor="let address of userAddresses" [ngValue]="address">
+        {{ address.address }}, อ.{{ address.district }}, จ.{{ address.province }}, รหัสไปรษณีย์ {{ address.zipCode }}
+      </option>
+    </select>
+  </div>
+  
+  <div class="mt-8">
+    <h2 class="text-xl font-semibold mb-4 text-green-600">เลือกวิธีการชำระเงิน</h2>
+    <div *ngFor="let method of paymentMethods" class="mb-4">
+      <label class="inline-flex items-center text-green-600">
+        <input type="radio" name="paymentMethod" [value]="method" [(ngModel)]="selectedPaymentMethod" 
+               class="form-radio h-5 w-5 text-green-600">
+        <span class="ml-2">{{ method.paymentMethod }}</span>
+      </label>
+    </div>
+  </div>
+
+  <form [formGroup]="paymentForm" (ngModelChange)="updateQRCodeUrl()" class="mt-8">
+    <ng-container *ngIf="selectedPaymentMethod?.id === 4">
+      <h2 class="text-xl font-semibold mb-4 text-green-600">QR Code สำหรับการชำระเงิน</h2>
+      <div *ngIf="qrCodeUrl" class="mt-4">
+        <label class="block text-green-600">QR Code:</label>
+        <img [src]="qrCodeUrl" alt="QR Code" class="mt-2">
+      </div>
+      <div class="mt-4">
+        <label class="block text-green-600">อัพโหลดหลักฐานการชำระเงิน:</label>
+        <input type="file" class="form-input mt-1 block w-full border-green-600" (change)="onFileSelected($event)">
+      </div>
+    </ng-container>    
+    
+    <ng-container *ngIf="selectedPaymentMethod?.id === 3">
+      <div class="container mx-auto px-4 py-4 bg-white shadow-md rounded-lg">
+        <h2 class="text-xl font-semibold mb-4 text-green-600">รายละเอียดบัญชีธนาคาร</h2>
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <div>
+            <p class="block font-medium text-green-600">ธนาคารไทยพาณิชย์</p>
+            <p>เลขบัญชี: 4351185882</p>
+            <p>นายนันธวุฒิ บุญเหลี่ยม</p>
+          </div>
+          <div class="mt-4">
+            <label class="block text-green-600">อัพโหลดหลักฐานการชำระเงิน:</label>
+            <input type="file" class="form-input mt-1 block w-full border-green-600" (change)="onFileSelected($event)">
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </form>
+  
+  <div class="mt-8">
+    <button (click)="placeOrder()" class="bg-green-600 text-white p-2 rounded-lg">สั่งซื้อ</button>
+  </div>
+</div>

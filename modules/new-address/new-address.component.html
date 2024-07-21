@@ -1,0 +1,37 @@
+<form [formGroup]="addressForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <div class="mb-4">
+    <label for="address" class="block text-gray-700 text-sm font-bold mb-2">ที่อยู่</label>
+    <input id="address" formControlName="address" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+  <div class="mb-4">
+    <label for="district" class="block text-gray-700 text-sm font-bold mb-2">ตำบล</label>
+    <input id="district" formControlName="district" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+  <div class="mb-4">
+    <label for="prefecture" class="block text-gray-700 text-sm font-bold mb-2">อำเภอ</label>
+    <input id="prefecture" formControlName="prefecture" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+  <div class="mb-4">
+    <label for="province" class="block text-gray-700 text-sm font-bold mb-2">จังหวัด</label>
+    <input id="province" formControlName="province" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+  <div class="mb-4">
+    <label for="zipCode" class="block text-gray-700 text-sm font-bold mb-2">รหัสไปรษณีย์</label>
+    <input id="zipCode" formControlName="zipCode" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+  <div class="mb-4">
+    <label for="recipientFname" class="block text-gray-700 text-sm font-bold mb-2">ชื่อผู้รับ</label>
+    <input id="recipientFname" formControlName="recipientFname" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+  <div class="mb-4">
+    <label for="recipientLname" class="block text-gray-700 text-sm font-bold mb-2">นามสกุลผู้รับ</label>
+    <input id="recipientLname" formControlName="recipientLname" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+  <div class="mb-6">
+    <label for="recipientPhone" class="block text-gray-700 text-sm font-bold mb-2">เบอร์โทรศัพท์ผู้รับ</label>
+    <input id="recipientPhone" formControlName="recipientPhone" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+  </div>
+  <div class="flex items-center justify-between">
+    <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">บันทึกข้อมูล</button>
+  </div>
+</form>

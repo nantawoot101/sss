@@ -1,0 +1,52 @@
+<div class="container mx-auto p-4">
+  <h2 class="text-2xl font-bold mb-4">อัพเดตที่อยู่</h2>
+  <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+    <div class="bg-white border-green-500 border-2 text-black p-4 rounded-lg shadow-lg mb-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="address" class="block text-sm font-medium text-gray-700">ที่อยู่</label>
+          <input id="address" type="text" formControlName="address" class="form-control">
+          <div *ngIf="addressForm.get('address')?.invalid && (addressForm.get('address')?.dirty || addressForm.get('address')?.touched)" class="text-red-500 mt-1">ที่อยู่จำเป็นต้องกรอก</div>
+        </div>
+        <div>
+          <label for="district" class="block text-sm font-medium text-gray-700">ตำบล</label>
+          <input id="district" type="text" formControlName="district" class="form-control">
+          <div *ngIf="addressForm.get('district')?.invalid && (addressForm.get('district')?.dirty || addressForm.get('district')?.touched)" class="text-red-500 mt-1">ตำบล</div>
+        </div>
+        <div>
+          <label for="prefecture" class="block text-sm font-medium text-gray-700">อำเภอ</label>
+          <input id="prefecture" type="text" formControlName="prefecture" class="form-control">
+          <div *ngIf="addressForm.get('prefecture')?.invalid && (addressForm.get('prefecture')?.dirty || addressForm.get('prefecture')?.touched)" class="text-red-500 mt-1">เขต/อำเภอจำเป็นต้องกรอก</div>
+        </div>
+        <div>
+          <label for="province" class="block text-sm font-medium text-gray-700">จังหวัด</label>
+          <input id="province" type="text" formControlName="province" class="form-control">
+          <div *ngIf="addressForm.get('province')?.invalid && (addressForm.get('province')?.dirty || addressForm.get('province')?.touched)" class="text-red-500 mt-1">จังหวัดจำเป็นต้องกรอก</div>
+        </div>
+        <div>
+          <label for="zipCode" class="block text-sm font-medium text-gray-700">รหัสไปรษณีย์</label>
+          <input id="zipCode" type="text" formControlName="zipCode" class="form-control">
+          <div *ngIf="addressForm.get('zipCode')?.invalid && (addressForm.get('zipCode')?.dirty || addressForm.get('zipCode')?.touched)" class="text-red-500 mt-1">รหัสไปรษณีย์จำเป็นต้องกรอก</div>
+        </div>
+        <div>
+          <label for="recipientFname" class="block text-sm font-medium text-gray-700">ชื่อผู้รับ</label>
+          <input id="recipientFname" type="text" formControlName="recipientFname" class="form-control">
+          <div *ngIf="addressForm.get('recipientFname')?.invalid && (addressForm.get('recipientFname')?.dirty || addressForm.get('recipientFname')?.touched)" class="text-red-500 mt-1">ชื่อจำเป็นต้องกรอก</div>
+        </div>
+        <div>
+          <label for="recipientLname" class="block text-sm font-medium text-gray-700">นามสกุลผู้รับ</label>
+          <input id="recipientLname" type="text" formControlName="recipientLname" class="form-control">
+          <div *ngIf="addressForm.get('recipientLname')?.invalid && (addressForm.get('recipientLname')?.dirty || addressForm.get('recipientLname')?.touched)" class="text-red-500 mt-1">นามสกุลจำเป็นต้องกรอก</div>
+        </div>
+        <div>
+          <label for="recipientPhone" class="block text-sm font-medium text-gray-700">เบอร์โทรศัพท์ผู้รับ</label>
+          <input id="recipientPhone" type="text" formControlName="recipientPhone" class="form-control">
+          <div *ngIf="addressForm.get('recipientPhone')?.invalid && (addressForm.get('recipientPhone')?.dirty || addressForm.get('recipientPhone')?.touched)" class="text-red-500 mt-1">เบอร์โทรศัพท์ย์จำเป็นต้องกรอก</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn bg-green-600 text-white hover:bg-green-700 focus:bg-green-700 focus:outline-none mt-4">อัพเดตที่อยู่</button>
+    </div>
+  </form>
+</div>

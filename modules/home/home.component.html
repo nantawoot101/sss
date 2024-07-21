@@ -1,0 +1,50 @@
+<div class="container mx-auto">
+  <div class="py-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div *ngFor="let product of paginatedProductList" class="overflow-hidden bg-white rounded-lg shadow-lg">
+      <img *ngIf="product.imgList && product.imgList.length > 0"
+           [src]="product.imgList[0]"
+           class="w-full h-64 object-cover transition-opacity duration-300 hover:opacity-75 rounded-t-lg"
+           alt="product-image"
+           (click)="onProductDetail(product.productId)">
+      <div class="px-6 py-1">
+        <div class="font-semibold text-lg text-gray-800 mb-2" (click)="onProductDetail(product.productId)">{{ product.productName }}</div>
+        <div class="text-gray-600">{{ product.author }}</div>
+        <div class="flex justify-between items-center">
+          <div class="text-gray-600">{{ product.productType.length > 0 ? product.productType[0].productTypeName : 'ไม่มีข้อมูล' }}</div>
+          <div class="text-green-600">฿{{ product.price}}</div>
+        </div>
+      </div>
+      <div class="px-3 pt-2 pb-2 flex justify-between items-center">
+        <button class="bg-green-500 text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-green-600 transition-colors duration-300" (click)="addToCart(product)">
+          <i class="fas fa-shopping-cart relative"></i>
+          เพิ่มลงตระกร้า
+        </button>
+        <div class="flex items-center">
+          <!-- Gray Stars -->
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+          <i class="fas fa-star text-yellow-400"></i>
+        </div>
+      </div>
+        
+    </div>
+  </div>
+  <div class="flex justify-center mt-4">
+    <button (click)="previousPage()" [disabled]="currentPage === 1" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-300 mx-1">ก่อนหน้า</button>
+    <button *ngFor="let page of totalPagesArray" 
+            (click)="goToPage(page)" 
+            class="btn px-4 py-2 border-2 rounded-lg transition-colors duration-300" 
+            [class.bg-white]="currentPage === page" 
+            [class.text-black]="currentPage === page" 
+            [class.bg-green-500]="currentPage !== page" 
+            [class.text-white]="currentPage !== page"
+            [class.border-green-500]="currentPage === page" 
+            [class.border-white]="currentPage !== page">
+      {{ page }}
+    </button>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-300 mx-1">ถัดไป</button>
+  </div>
+  
+</div>

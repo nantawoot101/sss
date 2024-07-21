@@ -1,0 +1,38 @@
+<div *ngIf="orderItems.length > 0; else noOrders">
+  <table class="min-w-full bg-white">
+    <thead>
+      <tr>
+        <th class="py-2">สินค้า</th>
+        <th class="py-2">จำนวนที่สั่งซื้อ</th>
+        <th class="py-2">ราคาทั้งหมด</th>
+        <th class="py-2">สถานะ</th>
+        <th class="py-2">ยกเลิกออร์เดอร์</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let order of orderItems">
+        <tr *ngFor="let item of order.orderItems" class="border-t">
+          <td class="py-2 px-4">
+            <ng-container *ngIf="getProductById(item.productId) as product">
+              <div class="flex items-center">
+                <img *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" alt="{{ product.productName }}" class="w-20 h-20 object-cover">
+                <p class="ml-4 flex items-center">{{ product.productName }}</p>
+              </div>
+            </ng-container>
+          </td>
+          <td class="py-2 px-4">{{ item.orderQuantity }}</td>
+          <td class="py-2 px-4">฿{{ item.totalPrice }}</td>
+          <td class="py-2 px-4">{{ order.status }}</td>
+          <td class="py-2 px-4">
+            <button (click)="cancelOrder(order.id)" class="btn bg-red-500 text-white hover:bg-red-700">
+              ยกเลิก
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+<ng-template #noOrders>
+  <p>ไม่มีรายการสั่งซื้อ</p>
+</ng-template>
